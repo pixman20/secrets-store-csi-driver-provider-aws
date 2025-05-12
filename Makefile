@@ -34,7 +34,7 @@ build: clean
 
 clean:
 	-rm -rf _output
-	-docker system prune --all --force
+#	-docker system prune --all --force
 
 docker-login:
 	aws --region $(AWS_REGION) $(ECRCMD) get-login-password | docker login -u AWS --password-stdin $(REPOBASE)
@@ -44,7 +44,6 @@ docker-buildx:
 	$(foreach ARCH,$(ARCHITECTURES),docker buildx build \
                 --platform $(GOOS)/$(ARCH) \
                 --no-cache \
-                --push \
                 -t $(REGISTRY_NAME):latest-$(ARCH) \
                 -t $(REGISTRY_NAME):latest-$(GOOS)-$(ARCH) \
                 -t $(REGISTRY_NAME):$(FULL_REV)-$(GOOS)-$(ARCH) \
