@@ -61,6 +61,7 @@ func (p *IRSACredentialProvider) GetAWSConfig() (*aws.Config, error) {
 
 	return aws.NewConfig().
 		WithSTSRegionalEndpoint(endpoints.RegionalSTSEndpoint).
+		WithEndpoint("http://localhost.localstack.cloud:4566").
 		WithRegion(p.region).
 		WithCredentials(credentials.NewCredentials(ar)), nil
 }

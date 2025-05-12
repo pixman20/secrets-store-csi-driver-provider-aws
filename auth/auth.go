@@ -48,6 +48,7 @@ func NewAuth(
 	if !usePodIdentity {
 		// Get an initial session to use for STS calls when using IRSA
 		sess, err := session.NewSession(aws.NewConfig().
+			WithEndpoint("http://localhost.localstack.cloud:4566").
 			WithSTSRegionalEndpoint(endpoints.RegionalSTSEndpoint).
 			WithRegion(region),
 		)
